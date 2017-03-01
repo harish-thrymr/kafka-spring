@@ -28,7 +28,7 @@ import com.kafka.chat.MessageConsumerImpl;
 import com.kafka.rpc.Request;
 import com.kafka.rpc.Response;
 
-//@SuppressWarnings("unused")
+@SuppressWarnings("unused")
 public class Client {
 
 	private final static Logger LOGGER = Logger.getLogger(Client.class);
