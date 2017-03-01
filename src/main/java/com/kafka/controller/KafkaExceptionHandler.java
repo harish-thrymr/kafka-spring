@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.kafka.bean.ResponseObject;
+
 @RestController
 @ControllerAdvice
 public class KafkaExceptionHandler {
@@ -15,9 +17,9 @@ public class KafkaExceptionHandler {
 
 	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
 	@ExceptionHandler(value = Exception.class)
-	public String handleException(Exception e) {
+	public ResponseObject handleException(Exception e) {
 		e.printStackTrace();
 		LOGGER.error(e);
-		return e.getMessage() == null ? "Something went wrong" : e.getMessage();
+		return new ResponseObject(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
 	}
 }

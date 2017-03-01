@@ -29,18 +29,32 @@ public class ResponseObject {
 
 	public ResponseObject(HttpStatus status) {
 		super();
+		this.status = status.value();
+		this.message = this.error = status.getReasonPhrase();
+	}
+
+	public ResponseObject(HttpStatus status, String message) {
+		super();
+		this.message = message != null ? message : "Something unexpected occured";
 		this.error = status.getReasonPhrase();
 		this.status = status.value();
 	}
 
-	public ResponseObject(HttpStatus status, String error) {
+	public ResponseObject(int status, String error) {
 		super();
 		this.error = error;
-		this.status = status.value();
+		this.status = status;
+	}
+
+	public ResponseObject(int status, String error, String message) {
+		super();
+		this.status = status;
+		this.error = error;
+		this.message = message;
 	}
 
 	@JsonIgnore
-	private ResponseEntity<ResponseObject> getResponseEntity() {
+	public ResponseEntity<ResponseObject> getResponseEntity() {
 		return ResponseEntity.status(status).body(this);
 	}
 

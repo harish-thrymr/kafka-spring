@@ -6,4 +6,6 @@ import com.kafka.entity.Company;
 
 public interface CompanyRepository extends JpaRepository<Company, Long> {
 
+	Company findByName(String name);
+
 }

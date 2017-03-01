@@ -6,4 +6,6 @@ import com.kafka.entity.ChatUser;
 
 public interface ChatUserRepository extends JpaRepository<ChatUser, Long> {
 
+	ChatUser findByName(String userName);
+
 }

@@ -2,6 +2,7 @@ package com.kafka.entity;
 
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
@@ -13,7 +14,8 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = false)
 public class Company extends BaseEntity {
 
-	private String companyName;
+	@Column(unique = true)
+	private String name;
 
 	@OneToMany(mappedBy = "company")
 	private List<ChatUser> chatUsers;
