@@ -1,8 +1,16 @@
 package com.kafka.service;
 
-public interface ChatService {
-	
-	boolean createCompany(String companyName) throws Exception;
+import java.util.List;
 
-	void sendMessage(String companyName, String userName, String toUserName) throws Exception;
+import com.kafka.bean.ResponseBean;
+
+public interface ChatService {
+
+	void createCompany(String companyName) throws Exception;
+
+	void sendMessage(String companyName, String userName, String toUserName, String message) throws Exception;
+
+	void createChatUser(String companyName, String chatUserName) throws Exception;
+
+	List<ResponseBean> getAllMessages(String companyName, String chatUserName) throws Exception;
 }

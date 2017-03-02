@@ -62,4 +62,26 @@ public class Check {
 	public static <T extends Exception> void notNull(Object object, String error, Class<T> clazz) throws Exception {
 		isTrue(object != null, error, clazz);
 	}
+
+	/**
+	 * throws the {@link IllegalArgumentException} error if validation fails
+	 * 
+	 * @param expression
+	 * @param error
+	 * @throws Exception
+	 */
+	public static void isNull(Object object, String error) throws Exception {
+		isTrue(object == null, error, IllegalArgumentException.class);
+	}
+
+	/**
+	 * throws the {@link T} extends {@link Exception} error if validation fails
+	 * 
+	 * @param expression
+	 * @param error
+	 * @throws Exception
+	 */
+	public static <T extends Exception> void isNull(Object object, String error, Class<T> clazz) throws Exception {
+		isTrue(object == null, error, clazz);
+	}
 }

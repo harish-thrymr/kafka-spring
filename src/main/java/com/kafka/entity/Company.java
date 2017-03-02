@@ -19,5 +19,8 @@ public class Company extends BaseEntity {
 
 	@OneToMany(mappedBy = "company")
 	private List<ChatUser> chatUsers;
+	
+	@OneToMany(mappedBy = "company")
+	private List<Channel> channels;
 
 }

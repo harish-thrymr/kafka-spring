@@ -33,10 +33,14 @@ public class ResponseObject {
 		this.message = this.error = status.getReasonPhrase();
 	}
 
-	public ResponseObject(HttpStatus status, String message) {
+	public ResponseObject(String message) {
 		super();
-		this.message = message != null ? message : "Something unexpected occured";
-		this.error = status.getReasonPhrase();
+		this.message = message;
+	}
+
+	public ResponseObject(HttpStatus status, String error) {
+		super();
+		this.error = error != null ? error : "Something unexpected occured";
 		this.status = status.value();
 	}
 
