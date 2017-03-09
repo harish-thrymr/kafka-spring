@@ -1,6 +1,5 @@
 package com.kafka.service.impl;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
@@ -70,9 +69,8 @@ public class ChatServiceImpl implements ChatService {
 			channelRepository.save(channel);
 		}
 
-		Client client = new Client(companyName, userName, channel.getPartition());
+		Client client = new Client(channel.getName(), userName);
 		client.sendMessage(message);
-		client.shutdown();
 	}
 
 	private ChatUser getChatUser(String userName, Company company) throws Exception {
@@ -120,11 +118,11 @@ public class ChatServiceImpl implements ChatService {
 	public List<ResponseBean> getAllMessages(String companyName, String chatUserName) throws Exception {
 		ChatUser chatUser = getChatUser(chatUserName, getCompany(companyName));
 		Function<Channel, List<ResponseBean>> function = channel -> {
-			Client client = new Client(companyName, chatUserName, channel.getPartition());
+			Client client = new Client(channel.getName(), chatUserName);
+			client.initConsumer();
 			client.shutdown();
 			return client.getAllMessages();
 		};
-
 		return chatUser.getChannels().stream().map(function).flatMap(List::stream).collect(Collectors.toList());
 
 	}

@@ -12,5 +12,4 @@ public class Request {
 	private String userName;
 	private String channelName;
 	private String message;
-	private Long timestamp;
 }

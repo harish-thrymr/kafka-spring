@@ -1,5 +1,12 @@
 package com.kafka.bean;
 
+/**
+ * Response object for RestFull APIs
+ * 
+ * @author Harish Thatikonda
+ * @since 2017-march-01
+ *
+ */
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
